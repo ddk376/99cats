@@ -10,13 +10,10 @@ class CatRentalRequest < ActiveRecord::Base
   belongs_to :cat, dependent: :destroy
 
   def approve!
-    CatRentalRequest.transaction do
-      if overlapping_approved_requests.empty?
-        self.update(status: "APPROVED")
-        overlapping_pending_requests.each { |request| request.deny! }
-      else
-        deny!
-      end
+    raise "not pending" unless self.status == "PENDING"
+    transaction do
+      self.update(status: "APPROVED")
+      overlapping_pending_requests.update_all(status: 'DENIED' )
     end
   end
 
@@ -43,7 +40,7 @@ class CatRentalRequest < ActiveRecord::Base
 
   def overlapping_requests
     CatRentalRequest
-        .where("(:id IS NULL) OR (id != :id)", id: self.id)
+        .where.not(id: self.id)
         .where(cat_id: cat_id)
         .where(<<-SQL, start_date: start_date, end_date: end_date)
             NOT((start_date > :end_date) OR (end_date < :start_date))
