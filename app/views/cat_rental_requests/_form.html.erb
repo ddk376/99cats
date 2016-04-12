@@ -1,0 +1,37 @@
+<% action_url =   @request.persisted? ? cat_rental_request_url(@cat) : cat_rental_requests_url %>
+<% method =       @request.persisted? ? "PATCH" : "POST" %>
+<% submit_text =  @request.persisted? ? "Update Request" : "Submit Request" %>
+<%= @request.errors.full_messages.empty? ? "" : @request.errors.full_messages %>
+<br>
+
+<form action="<%= action_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token  %>">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <label for="requests_cat_id">Select a cat:</label>
+  <select name="requests[cat_id]" id="requests_cat_id">
+    <% @cats.each do |cat| %>
+      <option value="<%= cat.id %>"><%= cat.name %></option>
+    <% end %>
+  </select>
+  <br>
+
+  <label for="requests_start_date">Start Date:</label>
+  <input
+    type="date"
+    name="requests[start_date]"
+    id="requests_start_date"
+    value="<%= @request.start_date %>">
+
+    <br>
+
+  <label for="requests_end_date">End Date:</label>
+  <input
+    type="date"
+    name="requests[end_date]"
+    id="requests_end_date"
+    value="<%= @request.end_date %>">
+
+  <br>
+
+  <button type="submit"><%= submit_text %></button>
+</form>

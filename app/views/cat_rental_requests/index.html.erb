@@ -1,0 +1,20 @@
+<h1>All Cat Rental Requests</h1>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Cat ID</th>
+  </tr>
+  <% @requests.each do |request| %>
+  <tr>
+    <td><%= request.id %></td>
+    <td><%= request.start_date %></td>
+    <td><%= request.end_date %></td>
+    <td><%= request.cat_id %></td>
+  </tr>
+  <% end %>
+</table>
+
+<a href="<%= new_cat_rental_request_url %>">Create a new request</a>

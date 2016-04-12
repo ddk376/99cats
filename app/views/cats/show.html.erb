@@ -1,0 +1,45 @@
+<h1><%= @cat.name %></h1>
+
+<table>
+  <tr>
+    <th>Age</th>
+    <th>Color</th>
+    <th>Sex</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><%= @cat.age %></td>
+    <td><%= @cat.color %></td>
+    <td><%= @cat.sex %></td>
+    <td><%= @cat.description %></td>
+  </tr>
+</table>
+
+
+<h3>Rental Requests</h3>
+<table>
+  <tr>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>
+      Approve/
+    </th>
+  </tr>
+  <% @cat.rental_requests.each do |request| %>
+  <tr>
+    <td><%= request.start_date %></td>
+    <td><%= request.end_date %></td>
+  </tr>
+  <% end %>
+</table>
+
+<br>
+<a href="<%= edit_cat_url(@cat) %>">Edit Cat Details</a>
+<br>
+<a href="<%= cats_url %>">Return to All Cats</a>
+<br>
+<br>
+<form action="<%= cat_url(@cat) %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete Cat</button>
+</form>
