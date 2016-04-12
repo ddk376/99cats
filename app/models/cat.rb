@@ -21,6 +21,13 @@ class Cat < ActiveRecord::Base
     dependent: :destroy
 
   def age
-    time_ago_in_words(birth_date)
+    now = DateTime.now.to_date
+    age = now.year  - birth_date.year
+    if (now.month == birth_date.month && now.day >= birth_date.day) ||
+        now.month > birth_date.month
+        age += 1
+    end
+    age
+    # time_ago_in_words(birth_date)
   end
 end
