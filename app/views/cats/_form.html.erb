@@ -3,8 +3,8 @@
 <% submit_text =  @cat.persisted? ? "Update Cat!" : "Create Cat!" %>
 
 <form action="<%= action_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token  %>">
-  <input type="hidden" name="_method" value="<%= method %>">
+  <%= authenticate_action %>
+  <%= method_action(method) %>
 
   <label for="cats_name">Name:</label>
   <input
@@ -34,7 +34,7 @@
 
   <label for="cats_color">Color:</label>
   <select name="cats[color]" id="cats_color">
-    <% Cat::COLORS.each do |color| %>
+    <% Cat::CAT_COLORS.each do |color| %>
       <option "<% if @cat.color == color %> selected <% end %>">
         <%= color %>
       </option>

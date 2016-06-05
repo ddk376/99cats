@@ -5,8 +5,8 @@
 <br>
 
 <form action="<%= action_url %>" method="post">
-  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token  %>">
-  <input type="hidden" name="_method" value="<%= method %>">
+  <%= authenticate_action %>
+  <%= method_action(method) %>
   <label for="requests_cat_id">Select a cat:</label>
   <select name="requests[cat_id]" id="requests_cat_id">
     <% @cats.each do |cat| %>

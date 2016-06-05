@@ -69,4 +69,10 @@ class CatRentalRequest < ActiveRecord::Base
       errors[:end_date] << "cannot be before start date"
     end
   end
+
+  def greedy_interval_scheduling
+  
+  end
+
+
 end

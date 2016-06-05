@@ -1,9 +1,7 @@
 <h1>New User</h1>
 <form action="<%= users_url %>" method="post">
   <div class="profile-login"></div>
-  <input type="hidden"
-         name="authenticity_token"
-         value="<%= form_authenticity_token %>">
+  <%= authenticate_action %>
  <label for="username">Username:</label>
  <input id="username" name="user[username]" type="text"><br>
  <label for="email">Email:</label>

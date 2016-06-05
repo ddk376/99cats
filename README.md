@@ -8,3 +8,4 @@ Clones the (now defunct) dress rental website 99dresses
   if there exists interval A and B and A(s) denotes the start time and A(e) denotes the
   end time, we can obtain all overlapping requests by !(A(e) <= B(s) && (B(e) <= A(s)))
 - order the requests on the cat show page using `order`
+- Uses `letter_opener` to open welcome email in development mode upon sign up
