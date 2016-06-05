@@ -9,3 +9,4 @@ Clones the (now defunct) dress rental website 99dresses
   end time, we can obtain all overlapping requests by !(A(e) <= B(s) && (B(e) <= A(s)))
 - order the requests on the cat show page using `order`
 - Uses `letter_opener` to open welcome email in development mode upon sign up
+- uses helpers to DRY authentication and method input for forms

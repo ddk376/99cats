@@ -2,16 +2,16 @@
 <html>
 <head>
   <title>NinetyNinecats</title>
-  </head>
+</head>
 <body>
-<% if logged_in? %>
-<h1><%= current_user.username %></h1>
-<%= button_to "Logout", session_url, method: :delete  %>
-<% else %>
-<%= link_to "Sign in", new_session_url %>
-<%= link_to "Sign up", new_user_url %>
-<% end %>
-<%= yield %>
+  <% if logged_in? %>
+  <h1>Welcome, <%= current_user.username %></h1>
+  <%= button_to "Logout", session_url, method: :delete  %>
+  <% else %>
+  <%= link_to "Sign in", new_session_url %>
+  <%= link_to "Sign up", new_user_url %>
+  <% end %>
+  <%= yield %>
 
 </body>
 </html>
